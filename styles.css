@@ -1,0 +1,36 @@
+#container {
+    height: 350px;
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px;
+    border: 5px solid black;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+button {
+    height: 40px;
+    width: 40px;
+}
+
+body {
+    justify-self: center;
+}
+
+#num1 {
+    padding: 5px;
+    width: 150px;
+    margin: 15px;
+    height: 30px;
+}
+
+#equals {
+    width: 80px;   
+}
+
+#clear {
+    width: 80px;
+}
