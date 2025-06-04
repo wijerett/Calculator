@@ -14,7 +14,7 @@
         <div id="container">
             <input id="num1" type="text">
 
-            <button id="1" onclick="replyClick(this)" data-number="1">1</button>
+            <button id="1" onclick="replyClick(this), addTo(myArray)" data-number="1">1</button>
             <button id="2" onclick="replyClick(this)" data-number="2">2</button>
             <button id="3" onclick="replyClick(this)" data-number="3">3</button>
             <button id="4" onclick="replyClick(this)" data-number="4">4</button>
@@ -26,10 +26,10 @@
             <button id="0" onclick="replyClick(this)" data-number="0">0</button>
             <button id="decimal" onclick="replyClick(this)" data-number=".">.</button>
 
-            <button id="plus" onclick="replyClick(this)" data-number="+">+</button>
-            <button id="minus" onclick="replyClick(this)" data-number="-">-</button>
-            <button id="times" onclick="replyClick(this)" data-number="*">*</button>
-            <button id="divide-by" onclick="replyClick(this)" data-number="/">/</button>
+            <button id="plus" onclick="replyClick(this), addTo(myArray), clearValue()" data-number="+">+</button>
+            <button id="minus" onclick="replyClick(this), clearValue(), addTo()" data-number="-">-</button>
+            <button id="times" onclick="replyClick(this), clearValue(), addTo()" data-number="*">*</button>
+            <button id="divide-by" onclick="replyClick(this), clearValue(), addTo()" data-number="/">/</button>
 
             <button id="equals" onclick="operate()">=</button>
 

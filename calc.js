@@ -16,16 +16,19 @@ const eight = document.getElementById("8");
 const nine = document.getElementById("9");
 const zero = document.getElementById("0");
 
-
-
-
-
-
 const num1 = document.getElementById("num1");
 
 var number1 = parseInt(num1.value);
 var operator = num1.value;
 var number2 = parseInt(num1.value);
+
+
+const myArray = [number1, operator, number2];
+
+function addTo() {
+    myArray.push(...document.getElementById("num1").value.split(','));
+    console.log([...new Set(myArray)]);
+}
 
 
 
@@ -45,6 +48,7 @@ function divide () {
 
 
 function operate() {
+    
     if (operator === "+") {
         return add();
     } else if (operator === "-") {
