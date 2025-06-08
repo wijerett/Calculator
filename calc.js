@@ -1,4 +1,3 @@
-
 const equals = document.getElementById("equals");
 const plus = document.getElementById("plus");
 const minus = document.getElementById("minus");
@@ -15,65 +14,77 @@ const seven = document.getElementById("7");
 const eight = document.getElementById("8");
 const nine = document.getElementById("9");
 const zero = document.getElementById("0");
-
 const num1 = document.getElementById("num1");
 
-var number1 = parseInt(num1.value);
-var operator = num1.value;
-var number2 = parseInt(num1.value);
+//populates display
+function replyClick(element) {
+    document.getElementById("num1").value = num1.value + element.getAttribute("data-number");
+}
+//clears display
+function clearValue() {
+    document.getElementById("num1").value = "";
+}
 
-
-const myArray = [number1, operator, number2];
+let myArray = [];
+let myArray1 = [];
+let myArray2 = [];
 
 function addTo() {
     myArray.push(...document.getElementById("num1").value.split(','));
     console.log([...new Set(myArray)]);
 }
+function addEquals() {
+    myArray2.push(...document.getElementById("num1").value.split(','));
+    console.log([...new Set(myArray2)]);
+}
 
-
+plus.addEventListener("click", () => {
+    const buttonValue = plus.value;
+    myArray1.push(buttonValue);
+    console.log(myArray1);
+});
+minus.addEventListener("click", () => {
+    const buttonValue = minus.value;
+    myArray1.push(buttonValue);
+    console.log(myArray1);
+});
+times.addEventListener("click", () => {
+    const buttonValue = times.value;
+    myArray1.push(buttonValue);
+    console.log(myArray1);
+});
+divideBy.addEventListener("click", () => {
+    const buttonValue = divideBy.value;
+    myArray1.push(buttonValue);
+    console.log(myArray1);
+})
 
 function add () {
-    `${number1} + ${number2}`;
+    `${myArray} + ${myArray2}`;
 };
 function subtract () {
-    `${number1} - ${number2}`;
+    `${myArray} - ${myArray2}`;
 };
 function multiply () {
-    `${number1} * ${number2}`;
+    `${myArray} * ${myArray2}`;
 };
 function divide () {
-    `${number1} / ${number2}`;
+    `${myArray} / ${myArray2}`;
 };
-
-
 
 function operate() {
-    
-    if (operator === "+") {
+    if (myArray1 === "+") {
         return add();
-    } else if (operator === "-") {
+    } else if (myArray1 === "-") {
         return subtract();
-    } else if (operator === "*") {
+    } else if (myArray1 === "*") {
         return multiply();
-    } else if (operator === "/") {
+    } else if (myArray1 === "/") {
         return divide();
-    };
-
+    }
+    console.log(add(), subtract(), multiply(), divide());
+    //reset arrays to 0
 };
-
-function replyClick(element) {
-    document.getElementById("num1").value = num1.value + element.getAttribute("data-number");
-}
-
-
-function clearValue() {
-    document.getElementById("num1").value = "";
-}
-
-
-
-
-
 
 
 
