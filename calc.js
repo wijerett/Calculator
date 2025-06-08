@@ -60,30 +60,46 @@ divideBy.addEventListener("click", () => {
 })
 
 function add () {
-    `${myArray} + ${myArray2}`;
+    return myArray + myArray2;
 };
 function subtract () {
-    `${myArray} - ${myArray2}`;
+    return myArray - myArray2;
 };
 function multiply () {
-    `${myArray} * ${myArray2}`;
+    return myArray * myArray2;
 };
 function divide () {
-    `${myArray} / ${myArray2}`;
+    return myArray / myArray2;
 };
 
-function operate() {
-    if (myArray1 === "+") {
-        return add();
-    } else if (myArray1 === "-") {
-        return subtract();
-    } else if (myArray1 === "*") {
-        return multiply();
-    } else if (myArray1 === "/") {
-        return divide();
+let myObject = {
+    firstNum: myArray,
+    secondOp: myArray1,
+    thirdNum: myArray2,
+};
+
+
+function operate(myArray1) {
+
+    const product = [];
+
+    for (let i = 0; i < myArray1; i++) {
+        if (myArray1 === "+") {
+            product.push(add(myArray1[i]));
+        } else if (myArray1 === "-") {
+            product.push(subtract(myArray1[i]));
+        } else if (myArray1 === "*") {
+            product.push(multiply(myArray1[i]));
+        } else if (myArray1 === "/") {
+            product.push(divide(myArray1[i]));
+        } else {
+            product.push(myArray[i]);
+        }
+        console.log(operate());
+        console.log(product);
     }
-    console.log(add(), subtract(), multiply(), divide());
-    //reset arrays to 0
+    return product;
+    
 };
 
 
