@@ -19,22 +19,26 @@ const num1 = document.getElementById("num1");
 //populates display
 function replyClick(element) {
     document.getElementById("num1").value = num1.value + element.getAttribute("data-number");
-}
+};
+
+
+
 //clears display
 function clearValue() {
     document.getElementById("num1").value = "";
-}
+};
 
-let myArray = [];
-let myArray1 = [];
-let myArray2 = [];
+var myArray = [];
+var myArray1 = [];
+var myArray2 = [];
+
 
 function addTo() {
-    myArray.push(...document.getElementById("num1").value.split(','));
+    myArray.push(parseInt(...document.getElementById("num1").value.split(',')));
     console.log([...new Set(myArray)]);
 }
 function addEquals() {
-    myArray2.push(...document.getElementById("num1").value.split(','));
+    myArray2.push(parseInt(...document.getElementById("num1").value.split(',')));
     console.log([...new Set(myArray2)]);
 }
 
@@ -57,20 +61,12 @@ divideBy.addEventListener("click", () => {
     const buttonValue = divideBy.value;
     myArray1.push(buttonValue);
     console.log(myArray1);
-})
+});
 
-function add () {
-    return myArray + myArray2;
-};
-function subtract () {
-    return myArray - myArray2;
-};
-function multiply () {
-    return myArray * myArray2;
-};
-function divide () {
-    return myArray / myArray2;
-};
+equals.addEventListener("click", () => {
+    console.log(operate(), empty());
+    
+});
 
 let myObject = {
     firstNum: myArray,
@@ -78,28 +74,36 @@ let myObject = {
     thirdNum: myArray2,
 };
 
+function add () {
+    return Number(myObject.firstNum) + Number(myObject.thirdNum);
+};
+function subtract () {
+    return Number(myArray) - Number(myArray2);
+};
+function multiply () {
+    return Number(myArray) * Number(myArray2);
+};
+function divide () {
+    return Number(myArray) / Number(myArray2);
+};
 
-function operate(myArray1) {
+function empty() {
+    myArray.length = 0;
+    myArray1.length = 0;
+    myArray2.length = 0;
+};
 
-    const product = [];
-
-    for (let i = 0; i < myArray1; i++) {
-        if (myArray1 === "+") {
-            product.push(add(myArray1[i]));
-        } else if (myArray1 === "-") {
-            product.push(subtract(myArray1[i]));
-        } else if (myArray1 === "*") {
-            product.push(multiply(myArray1[i]));
-        } else if (myArray1 === "/") {
-            product.push(divide(myArray1[i]));
-        } else {
-            product.push(myArray[i]);
-        }
-        console.log(operate());
-        console.log(product);
-    }
-    return product;
-    
+function operate() {
+    if (`${myObject.secondOp}` === "+") {
+        return add();
+    } else if (`${myObject.secondOp}` === "-") {
+        return subtract();
+    } else if (`${myObject.secondOp}` === "*") {
+        return multiply();
+    } else if (`${myObject.secondOp}` === "/") {
+        return divide();
+    };
+    console.log(operate());
 };
 
 
