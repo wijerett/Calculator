@@ -28,10 +28,15 @@ let myObject = {
     fourthNum: myArray3,
 };
 
-
 //populates display
 function replyClick(element) {
-    document.getElementById("num1").value = num1.value + element.getAttribute("data-number");
+    if (myArray3 >= 1) {
+        clearValue();
+        empty();
+        document.getElementById("num1").value = num1.value + element.getAttribute("data-number");
+    } else {
+        document.getElementById("num1").value = num1.value + element.getAttribute("data-number");
+    };
 };
 
 //clears display
@@ -41,6 +46,9 @@ function clearValue() {
 
 //adds numbers in num1 to array
 function addTo() {
+    if (myArray.length >= 1) {
+        return;
+    }
     myArray.push(parseInt(...document.getElementById("num1").value.split(',')));
     console.log([...new Set(myArray)]);
 };
@@ -52,26 +60,38 @@ function addEquals() {
 };
 
 plus.addEventListener("click", () => {
-    clearResult();//doesnt work yet, trying to empty after operate
- 
+    if (myArray1.length >= 1) {
+        myArray1.splice(0, 1);
+    }
     const buttonValue = plus.value;
     myArray1.push(buttonValue);
     console.log(myArray1);
 });
 
+//splice replaces operator after one has already been pressed
+
 minus.addEventListener("click", () => {
+    if (myArray1.length >= 1) {
+        myArray1.splice(0, 1);
+    }
     const buttonValue = minus.value;
     myArray1.push(buttonValue);
     console.log(myArray1);
 });
 
 times.addEventListener("click", () => {
+    if (myArray1.length >= 1) {
+        myArray1.splice(0, 1);
+    }
     const buttonValue = times.value;
     myArray1.push(buttonValue);
     console.log(myArray1);
 });
 
 divideBy.addEventListener("click", () => {
+    if (myArray1.length >= 1) {
+        myArray1.splice(0, 1);
+    }
     const buttonValue = divideBy.value;
     myArray1.push(buttonValue);
     console.log(myArray1);
@@ -79,7 +99,6 @@ divideBy.addEventListener("click", () => {
 
 equals.addEventListener("click", () => {
     console.log(operate(), empty(), product());
-    
 });
 
 function add () {
@@ -95,27 +114,14 @@ function divide () {
     return Number(myArray) / Number(myArray2);
 };
 
-function product () {
-    document.getElementById("num1").value = myArray3.toFixed(2);
-};
 
 //trying to figure out how to empty everything after operation and number is pushed
 function clearResult() {
-    if (myArray > 1 && myArray1 > 1 && myArray2 > 1 && myArray3 > 1) {
-        myArray = 0;
-        myArray1 = 0;
-        myArray2 = 0;
-        myArray3 = 0;
-        num1.value = [];
-    }
-    myArray3 = 0;
-};
-
-function empty() {
-    myArray.length = 0;
-    myArray1.length = 0;
-    myArray2.length = 0;
-    myArray3.length = 0;
+        myArray = [];
+        myArray1 = [];
+        myArray2 = [];
+        myArray3 = [];
+        document.getElementById("num1").value = 0;
 };
 
 function operate() {
@@ -130,3 +136,13 @@ function operate() {
     };
 };
 
+function empty() {
+    myArray.length = 0;
+    myArray1.length = 0;
+    myArray2.length = 0;
+    myArray3.length = 0;
+};
+
+function product () {
+    num1.value = myArray3;//.toFixed(2)
+};
