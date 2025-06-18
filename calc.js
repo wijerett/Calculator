@@ -28,15 +28,19 @@ let myObject = {
     fourthNum: myArray3,
 };
 
-//populates display
-function replyClick(element) {
-    if (myArray3 >= 1) {
+//populates display and after operate, clears display when new number is clicked
+
+function replyClick(element){
+    const clickedValue = element.getAttribute("data-number");
+    const num1Field = document.getElementById("num1");
+    if (operateRan) {
         clearValue();
         empty();
-        document.getElementById("num1").value = num1.value + element.getAttribute("data-number");
+        num1Field.value = clickedValue;
+        operateRan = false;
     } else {
-        document.getElementById("num1").value = num1.value + element.getAttribute("data-number");
-    };
+        num1Field.value = (num1Field.value || "") + clickedValue;
+    }
 };
 
 //clears display
@@ -53,7 +57,7 @@ function addTo() {
     console.log([...new Set(myArray)]);
 };
 
-//adds numbers after operator and 2nd number is pressed to arrays
+//adds numbers after operator and 2nd number is passed to arrays
 function addEquals() {
     myArray2.push(parseInt(...document.getElementById("num1").value.split(',')));
     console.log([...new Set(myArray2)]);
@@ -98,7 +102,7 @@ divideBy.addEventListener("click", () => {
 });
 
 equals.addEventListener("click", () => {
-    console.log(operate(), empty(), product());
+    console.log(operate(), product());
 });
 
 function add () {
@@ -116,15 +120,11 @@ function divide () {
 
 
 //trying to figure out how to empty everything after operation and number is pushed
-function clearResult() {
-        myArray = [];
-        myArray1 = [];
-        myArray2 = [];
-        myArray3 = [];
-        document.getElementById("num1").value = 0;
-};
+
+let operateRan = false;
 
 function operate() {
+    operateRan = true;
     if (`${myObject.secondOp}` === "+") {
         return myArray3 = add();
     } else if (`${myObject.secondOp}` === "-") {
@@ -144,5 +144,5 @@ function empty() {
 };
 
 function product () {
-    num1.value = myArray3;//.toFixed(2)
+    num1.value = myArray3.toFixed(2);
 };
