@@ -35,7 +35,7 @@ function replyClick(element){
     const num1Field = document.getElementById("num1");
     if (operateRan) {
         clearValue();
-        empty();
+        myArray2.length = 0;
         num1Field.value = clickedValue;
         operateRan = false;
     } else {
@@ -52,7 +52,8 @@ function clearValue() {
 function addTo() {
     if (myArray.length >= 1) {
         return;
-    }
+    } 
+
     myArray.push(parseInt(...document.getElementById("num1").value.split(',')));
     console.log([...new Set(myArray)]);
 };
@@ -63,7 +64,10 @@ function addEquals() {
     console.log([...new Set(myArray2)]);
 };
 
+//splice replaces operator after one has already been pressed
+
 plus.addEventListener("click", () => {
+    operatorClick("+");
     if (myArray1.length >= 1) {
         myArray1.splice(0, 1);
     }
@@ -72,9 +76,8 @@ plus.addEventListener("click", () => {
     console.log(myArray1);
 });
 
-//splice replaces operator after one has already been pressed
-
 minus.addEventListener("click", () => {
+    operatorClick("-");
     if (myArray1.length >= 1) {
         myArray1.splice(0, 1);
     }
@@ -84,6 +87,7 @@ minus.addEventListener("click", () => {
 });
 
 times.addEventListener("click", () => {
+    operatorClick("*");
     if (myArray1.length >= 1) {
         myArray1.splice(0, 1);
     }
@@ -93,6 +97,7 @@ times.addEventListener("click", () => {
 });
 
 divideBy.addEventListener("click", () => {
+    operatorClick("/");
     if (myArray1.length >= 1) {
         myArray1.splice(0, 1);
     }
@@ -121,19 +126,40 @@ function divide () {
 
 //trying to figure out how to empty everything after operation and number is pushed
 
+function operatorClick(operatorValue) {
+    if (operateRan) {
+        myArray = [...myArray3];
+        myArray2.length = 0;
+        myArray3.length = 0;
+        operateRan = false;
+    };
+    myArray1.splice(0, 1, operatorValue);
+};
+
 let operateRan = false;
 
 function operate() {
     operateRan = true;
-    if (`${myObject.secondOp}` === "+") {
-        return myArray3 = add();
-    } else if (`${myObject.secondOp}` === "-") {
-        return myArray3 = subtract();
-    } else if (`${myObject.secondOp}` === "*") {
-        return myArray3 = multiply();
-    } else if (`${myObject.secondOp}` === "/") {
-        return myArray3 = divide();
+    const num1 = document.getElementById("num1");
+    if (myObject.secondOp[0] === "+") {
+        myArray3 = [add()];
+    } else if (myObject.secondOp[0] === "-") {
+        myArray3 = [subtract()];
+    } else if (myObject.secondOp[0] === "*") {
+        myArray3 = [multiply()];
+    } else if (myObject.secondOp[0] === "/") {
+        if (myObject.thirdNum[0] === 0) {
+            empty();
+            clearValue();
+            num1.value = "NoNoNo";
+            myArray3 = [];
+            return "NoNoNo";
+        }
+        myArray3 = [divide()];
     };
+    num1.value = myArray3[0];
+    myArray = [...myArray3];
+    return myArray3[0];
 };
 
 function empty() {
@@ -143,6 +169,13 @@ function empty() {
     myArray3.length = 0;
 };
 
+//defines what happens when a string is entered vs a number entered
 function product () {
-    num1.value = myArray3.toFixed(2);
+    const num1 = document.getElementById("num1");
+
+    if (myArray3.length > 0 && typeof myArray3[0] === "number") {
+        num1.value = myArray3[0].toFixed(2);
+    } else if (typeof myArray3[0] === "string") {
+        num1.value = myArray3[0] || "NoNoNo";
+    };
 };
