@@ -7,41 +7,34 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-
-        
-
-
-        <div id="container">
-            <input id="num1" type="text">
-
-            <button id="1" onclick="replyClick(this)" data-number="1">1</button>
-            <button id="2" onclick="replyClick(this)" data-number="2">2</button>
-            <button id="3" onclick="replyClick(this)" data-number="3">3</button>
-            <button id="4" onclick="replyClick(this)" data-number="4">4</button>
-            <button id="5" onclick="replyClick(this)" data-number="5">5</button>
-            <button id="6" onclick="replyClick(this)" data-number="6">6</button>
-            <button id="7" onclick="replyClick(this)" data-number="7">7</button>
-            <button id="8" onclick="replyClick(this)" data-number="8">8</button>
-            <button id="9" onclick="replyClick(this)" data-number="9">9</button>
-            <button id="0" onclick="replyClick(this)" data-number="0">0</button>
-            <button id="decimal" onclick="replyClick(this)" data-number=".">.</button>
-            
-            <div id="operators">
-                <button id="plus" onclick="addTo(myArray), clearValue()" value="+">+</button>
-                <button id="minus" onclick="addTo(myArray), clearValue()" value="-">-</button>
-                <button id="times" onclick="addTo(myArray), clearValue()" value="*">*</button>
-                <button id="divide-by" onclick="addTo(myArray), clearValue()" value="/">/</button>
+        <div id="calc-buttons">
+            <div id="container">
+                <input id="num1" type="text">
+    
+                <button id="1" onclick="replyClick(this)" data-number="1">1</button>
+                <button id="2" onclick="replyClick(this)" data-number="2">2</button>
+                <button id="3" onclick="replyClick(this)" data-number="3">3</button>
+                <button id="4" onclick="replyClick(this)" data-number="4">4</button>
+                <button id="5" onclick="replyClick(this)" data-number="5">5</button>
+                <button id="6" onclick="replyClick(this)" data-number="6">6</button>
+                <button id="7" onclick="replyClick(this)" data-number="7">7</button>
+                <button id="8" onclick="replyClick(this)" data-number="8">8</button>
+                <button id="9" onclick="replyClick(this)" data-number="9">9</button>
+                <button id="0" onclick="replyClick(this)" data-number="0">0</button>
+                <button id="decimal" data-number=".">.</button>
+    
+                <div id="operators">
+                    <button id="plus" onclick="addTo(myArray), clearValue()" value="+">+</button>
+                    <button id="minus" onclick="addTo(myArray), clearValue()" value="-">-</button>
+                    <button id="times" onclick="addTo(myArray), clearValue()" value="*">*</button>
+                    <button id="divide-by" onclick="addTo(myArray), clearValue()" value="/">/</button>
+                </div>
+                
+                <button id="backspace">del</button>
+                <button id="clear" onclick="empty(), clearValue()">clear</button>
+                <button id="equals">=</button>
             </div>
-            <button id="equals" onclick="addEquals(myArray2), clearValue()">=</button>
-
-            <button id="clear" onclick="empty(), clearValue()">clear</button>
-
         </div>
-
-
-
-
         <script src="calc.js"></script>
-
     </body>
 </html>
